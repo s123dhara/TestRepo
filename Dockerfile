@@ -15,15 +15,16 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# # Only install production deps
-# COPY package*.json ./
-# RUN npm install --omit=dev
+# ✅ Install only production dependencies
+COPY package*.json ./
+RUN npm install --omit=dev
 
-# Copy built output only
+# ✅ Copy built app only
 COPY --from=builder /app/dist ./dist
 
-# Expose the port
+# ✅ If using config files like .env, also copy them:
+# COPY --from=builder /app/.env ./
+
 EXPOSE 3000
 
-# Run the app
 CMD ["node", "dist/main"]
