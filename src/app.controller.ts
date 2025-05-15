@@ -1,6 +1,6 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import dotenv, { config } from 'dotenv';
 
 config();
@@ -16,12 +16,17 @@ export class AppController {
 
 
   @Get('/demo')
-  demoMethod(@Res() res: Response) {
-    res.json(
-      {
-        status: "true",
-        message : "Server is Running at "
-      }
-    )
+  async demoMethod(@Req() req : Request, @Res() res: Response) {
+    const { status, message } =  await this.appService.findAll();
+
+    return res.json({
+      status, message
+    })
+    // res.json(
+    //   {
+    //     status: "true",
+    //     message : "Server is Running at "
+    //   }
+    // )
   }
 }

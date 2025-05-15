@@ -4,6 +4,8 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
+RUN echo 'we are first running some # of cool things'
+RUN echo WORKDIR
 RUN npm install
 
 COPY . .
@@ -17,6 +19,7 @@ WORKDIR /app
 
 # ✅ Install only production dependencies
 COPY package*.json ./
+RUN echo 'we are running some # of cool things'
 RUN npm install --omit=dev
 
 # ✅ Copy built app only
