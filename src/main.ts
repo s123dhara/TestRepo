@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import dotenv from 'dotenv';
+dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const PORT = 4000
-  await app.listen(process.env.PORT ?? 3000);
+  const PORT = process.env.PORT ?? 3000;
+  await app.listen(PORT);
 
   console.log(`Launching NestJS app on port ${PORT}, URL: http://0.0.0.0:${PORT}`)
 }
