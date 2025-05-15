@@ -13,6 +13,7 @@ COPY . .
 
 # Build the project
 RUN npm run build
+RUN npm run start
 
 # Expose the app port
 EXPOSE 3000
