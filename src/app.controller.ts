@@ -1,9 +1,9 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
-import dotenv from 'dotenv';
+import dotenv, { config } from 'dotenv';
 
-dotenv.config();
+config();
 
 @Controller()
 export class AppController {
